@@ -5,7 +5,7 @@
     <link rel="icon" type="image/png" href="assets/img/favicon.ico">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <title>Light Bootstrap Dashboard by Creative Tim</title>
+    <title>#CoVoitMetzLux</title>
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
@@ -24,18 +24,19 @@
     <div class="sidebar" data-color="blue" data-image="assets/img/sidebar.jpg">
         <div class="sidebar-wrapper">
             <div class="logo">
-                <a href="{{ url('/home') }}" class="simple-text">
+                <a href="{{ url('/') }}" class="simple-text">
                     #CoVoitMetzLux
                 </a>
             </div>
 
             <ul class="nav">
                 <li {{ Request::is('home') ? 'class=active' : '' }}>
-                    <a href="{{ url('/home') }}">
+                    <a href="{{ url('/') }}">
                         <i class="fa fa-home"></i>
                         <p>Accueil</p>
                     </a>
                 </li>
+                @if(!Auth::check())
                 <li>
                     <a href="{{ url('/login') }}">
                         <i class="fa fa-users"></i>
@@ -46,6 +47,20 @@
                 <a href="{{ url('/login') }}">
                         <i class="fa fa-user"></i>
                         <p>Se connecter</p>
+                    </a>
+                </li>
+                @else
+                @endif
+                <li {{ Request::is('home') ? 'class=active' : '' }}>
+                    <a href="{{ url('/') }}">
+                        <i class="fa fa-search"></i>
+                        <p>Rechercher un trajet</p>
+                    </a>
+                </li>
+                <li {{ Request::is('home') ? 'class=active' : '' }}>
+                    <a href="{{ url('/') }}">
+                        <i class="fa fa-car"></i>
+                        <p>Proposer un trajet</p>
                     </a>
                 </li>
             </ul>

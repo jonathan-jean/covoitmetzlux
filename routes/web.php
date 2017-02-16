@@ -14,10 +14,6 @@ Route::group(["middleware" => ["auth"]], function () {
     });
 });
 
-Route::get('/home', function () {
-    return view('auth.login');
-});
-
 Route::group(["middleware" => ["guest"]], function () {
     Route::get('/login', function () {
         return view('auth.login');

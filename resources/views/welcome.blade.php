@@ -1,88 +1,37 @@
-<!DOCTYPE html>
-<html lang="{{ config('app.locale') }}">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends("layouts.main")
 
-        <title>CoVoit Metz - Lux</title>
-
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Raleway', sans-serif;
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .sub {
-                font-size: 42px;
-            }
-
-            .small {
-                font-size: 24px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 24px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            <div class="content">
-                <div class="title m-b-md">
-                    #CoVoitMetzLux
+@section("content")
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="card">
+                <div class="header">
+                    <h2 class="title">#CoVoitMetzLux</h2>
+                    <p class="category">Le site communautaire pour mettre fin aux galères</p>
                 </div>
-                <div class="sub m-b-md">
-                    La solidarité s'organise
-                </div>
-                <div class="links">
-                    <a href="{{ url('/home') }}"> Acceder au site</a>
+                <div class="content">
+
+                    <div class="typo-line">
+                    </div>
+
+                    <div class="typo-line">
+                        <blockquote>
+                            <p>
+                                Afin de faciliter la gestion du #CoVoitMetzLux lors des problèmes sur la ligne, ce site a été mis en place.
+                                <br>Ce projet est participatif et <a href="https://github.com/jonathan-jean/covoitmetzlux">open source</a>
+                            </p>
+                            <small>
+                                Jonathan JEAN, <a href="https://twitter.com/jonathanjeanfr">@jonathanjeanfr</a>
+                            </small>
+                        </blockquote>
+                    </div>
+
+                    <div class="typo-line">
+                        <p class="text-muted">
+                            Proposez ou consultez, facilement, les covoiturages mis en place par les usagers
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
-    </body>
-</html>
+    </div>
+@stop
