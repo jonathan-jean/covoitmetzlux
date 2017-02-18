@@ -3,7 +3,7 @@ CoVoitMetz Lux site
 WIP
 
 #TODO
-Refactor and clear code (mainly TravalController)
+Refactor and clear code (mainly TravelController)
 
 #CREDITS
 
