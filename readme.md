@@ -3,7 +3,7 @@ CoVoitMetz Lux site
 WIP
 
 #TODO
-Adding credits for the theme
+Refactor and clear code (mainly TravalController)
 
 #CREDITS
 
