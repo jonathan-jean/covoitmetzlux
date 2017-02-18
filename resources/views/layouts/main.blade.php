@@ -2,7 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/png" href="assets/img/favicon.ico">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('favicon-32x32.png') }}" sizes="32x32">
+    <link rel="icon" type="image/png" href="{{ asset('favicon-16x16.png') }}" sizes="16x16">
+    <link rel="manifest" href="{{ asset('manifest.json') }}">
+    <link rel="mask-icon" href="{{ asset('safari-pinned-tab.svg') }}" color="#5bbad5">
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
+    <meta name="msapplication-config" content="{{ asset('browserconfig.xml') }}">
+    <meta name="theme-color" content="#ffffff">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
     <title>#CoVoitMetzLux</title>
