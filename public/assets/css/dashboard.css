@@ -539,6 +539,10 @@ body > .navbar-collapse {
   .btn-success .caret {
     border-top-color: #87CB16; }
 
+.btn-bg {
+      background-color: white;
+}
+
 .btn-info {
   border-color: #1DC7EA;
   color: #1DC7EA; }
@@ -1195,7 +1199,7 @@ body > .navbar-collapse {
     position: relative;
     line-height: 16px;
     top: 1px; }
-  .navbar .navbar-nav .notification {
+  .notification {
     position: absolute;
     background-color: #FB404B;
     text-align: center;
@@ -1445,15 +1449,9 @@ body > .navbar-collapse {
     margin: 10px 10px 10px 0px; }
 
 .dropdown-menu {
-  visibility: hidden;
   margin: 0;
   padding: 0;
   border-radius: 10px;
-  display: block;
-  z-index: 9000;
-  position: absolute;
-  opacity: 0;
-  filter: alpha(opacity=0);
   -webkit-box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.125);
   box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.125); }
   .open .dropdown-menu {
@@ -2711,9 +2709,6 @@ body > .navbar-collapse {
     border-bottom-color: white;
     border-top-color: white; }
 
-  .dropdown-menu {
-    display: none; }
-
   .navbar-fixed-top {
     -webkit-backface-visibility: hidden; }
 
@@ -2813,3 +2808,9 @@ body > .navbar-collapse {
     overflow-y: hidden;
     -ms-overflow-style: -ms-autohiding-scrollbar;
     -webkit-overflow-scrolling: touch; } }
+
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
