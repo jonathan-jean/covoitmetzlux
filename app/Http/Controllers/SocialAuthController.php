@@ -30,8 +30,6 @@ class SocialAuthController extends Controller
     public function handleProviderCallback($provider)
     {
         $user = Socialite::driver($provider)->user();
-        if (!$user)
-            dd();
         $authUser = $this->findOrCreateUser($user, $provider);
         Auth::login($authUser, true);
         return redirect('/');
@@ -53,6 +51,7 @@ class SocialAuthController extends Controller
         return User::create([
             'name' => $user->getName(),
             'email' => $user->getEmail(),
+            'avatar' => $user->getAvatar(),
             'provider' => $provider,
             'provider_id' => $user->getId()
         ]);

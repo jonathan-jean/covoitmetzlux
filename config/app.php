@@ -12,7 +12,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => 'CovoitMetzLux',
+    'name' => '#CoVoitMetzLux',
 
     /*
     |--------------------------------------------------------------------------
@@ -77,7 +77,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'fr',
 
     /*
     |--------------------------------------------------------------------------
@@ -179,6 +179,9 @@ return [
 
         Laravel\Socialite\SocialiteServiceProvider::class,
 
+        Collective\Html\HtmlServiceProvider::class,
+
+        Cornford\Googlmapper\MapperServiceProvider::class,
     ],
 
     /*
@@ -228,7 +231,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
-
+        'Form' => Collective\Html\FormFacade::class,
+        'Mapper' => Cornford\Googlmapper\Facades\MapperFacade::class,
     ],
 
 ];
