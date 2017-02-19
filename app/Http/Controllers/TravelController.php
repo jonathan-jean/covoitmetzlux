@@ -166,7 +166,7 @@ class TravelController extends Controller
         $travel->save();
 
         $request->session()->flash('info', 'Votre trajet a bien été mis à jour.');
-        return redirect(route('travel-details', $id));
+        return redirect(route('travel-details', $travel->id));
     }
 
     public function postCreate(Request $request)
