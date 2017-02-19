@@ -31,7 +31,7 @@
 </head>
 <body>
 
-<div class="wrapper">
+<div id="main" class="wrapper">
     <div class="sidebar" data-color="blue" data-image="{{ asset('assets/img/sidebar.jpg') }}">
         <div class="sidebar-wrapper">
             <div class="logo">

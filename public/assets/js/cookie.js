@@ -4,7 +4,7 @@ C = {
     cookieDuration : 14,
 
     // Name of our cookie
-    cookieName: 'complianceCookie',
+    cookieName: 'CoVoitMetzLuxCookieCompliance',
 
     // Value of cookie
     cookieValue: 'on',
@@ -41,7 +41,7 @@ C = {
             ', C.cookieDuration)" data-dismiss="alert" aria-label="Close">' +
             this.bannerButton + '</button></div>'
         );
-        $("body").append(banner)
+        $("#main").append(banner)
     },
 
     createCookie: function(name, value, days) {
