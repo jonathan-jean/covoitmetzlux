@@ -16,6 +16,8 @@ class ContactController extends Controller
 
     public function getDecline(Request $request, Contact $contact)
     {
+        if ($contact->answered)
+            return redirect(route('contact-index'));
         $contact->answered = true;
         $contact->save();
         $contact->fromUser->notify(new DeclineContactNotification($contact));
@@ -25,9 +27,15 @@ class ContactController extends Controller
 
     public function getAccept(Request $request, Contact $contact)
     {
+        if ($contact->answered)
+            return redirect(route('contact-index'));
         $contact->answered = true;
         $contact->save();
         $contact->fromUser->notify(new AcceptContactNotification($contact));
+        $contact->travel->places--;
+        if ($contact->travel->places < 0)
+            $contact->travel->places = 0;
+        $contact->travel->save();
         $request->session()->flash('info', "Vous avez accepté la demande.");
         return redirect(route('contact-index'));
     }
