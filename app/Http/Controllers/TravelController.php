@@ -6,9 +6,55 @@ use App\Contact;
 use App\Travel;
 use Carbon\Carbon;
 use Cornford\Googlmapper\Facades\MapperFacade as Mapper;
+use Cornford\Googlmapper\Models\Map;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
+class Location {
+    protected $address;
+    protected $latitude;
+    protected $longitude;
+
+    /**
+     * Location constructor.
+     * @param $address
+     * @param $latitude
+     * @param $longitude
+     */
+    public function __construct($address, $latitude, $longitude)
+    {
+        $this->address = $address;
+        $this->latitude = $latitude;
+        $this->longitude = $longitude;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLatitude()
+    {
+        return $this->latitude;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLongitude()
+    {
+        return $this->longitude;
+    }
+
+
+}
 
 class TravelController extends Controller
 {
@@ -37,6 +83,16 @@ class TravelController extends Controller
         return ($miles * 1.609344);
     }
 
+    public function getAdress($place)
+    {
+        if ($place == "P+R Bouillon, Rue de Bouillon, Luxembourg")
+            return new Location($place, 49.5997333, 6.1062028);
+        else if ($place == 'Luxembourg')
+            return new Location("Gare de Luxembourg", 49.6000243,6.131863);
+        else
+            return Mapper::location($place);
+    }
+
     public function getSearch(Request $request)
     {
         if ($request->has('search'))
@@ -48,7 +104,7 @@ class TravelController extends Controller
             ]);
 
             try {
-                $departure = Mapper::location($request->get('departure'));
+                $departure = $this->getAdress($request->get('departure'));
             } catch (Exception $e)
             {
                 return view('travel.search')->withErrors(['placesD' => 'Impossible de trouver votre lieu de départ']);
@@ -56,7 +112,7 @@ class TravelController extends Controller
 
             if ($request->has('arrival')) {
                 try {
-                    $arrival = Mapper::location($request->get('arrival'));
+                    $arrival = $this->getAdress($request->get('arrival'));
                 } catch (Exception $e) {
                     return view('travel.search')->withErrors(['placesA' => 'Impossible de trouver votre lieu de destination']);
                 }
@@ -142,6 +198,7 @@ class TravelController extends Controller
         $request->session()->flash('info', 'Votre annonce a été supprimé');
         return redirect(route('home'));
     }
+
     public function postEdit(Request $request, Travel $travel)
     {
         $this->validate($request, [
@@ -158,17 +215,17 @@ class TravelController extends Controller
             return redirect(route('home'));
         }
         try {
-            $departure = Mapper::location($request->get('departure'));
+            $departure = $this->getAdress($request->get('departure'));
         } catch (Exception $e)
         {
-            return redirect(route('travel-edit'), $id)->withErrors(['places' => 'Impossible de trouver votre lieu de départ'])->withInput();
+            return redirect(route('travel-edit'), $travel->id)->withErrors(['places' => 'Impossible de trouver votre lieu de départ'])->withInput();
         }
 
         try {
-            $arrival = Mapper::location($request->get('arrival'));
+            $arrival = $this->getAdress($request->get('arrival'));
         } catch (Exception $e)
         {
-            return redirect(route('travel-edit'), $id)->withErrors(['places' => 'Impossible de trouver votre lieu de destination'])->withInput();
+            return redirect(route('travel-edit'), $travel->id)->withErrors(['places' => 'Impossible de trouver votre lieu de destination'])->withInput();
         }
 
         $travel->departure = $departure->getAddress();
@@ -197,14 +254,14 @@ class TravelController extends Controller
         ]);
 
         try {
-            $departure = Mapper::location($request->get('departure'));
+            $departure = $this->getAdress($request->get('departure'));
         } catch (Exception $e)
         {
             return redirect(route('travel-create'))->withErrors(['places' => 'Impossible de trouver votre lieu de départ'])->withInput();
         }
 
         try {
-            $arrival = Mapper::location($request->get('arrival'));
+            $arrival = $this->getAdress($request->get('arrival'));
         } catch (Exception $e)
         {
             return redirect(route('travel-create'))->withErrors(['places' => 'Impossible de trouver votre lieu de destination'])->withInput();
