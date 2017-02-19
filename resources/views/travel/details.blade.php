@@ -34,10 +34,11 @@
                             <h6>Message du conducteur: </h6> <p class="category">{{ $travel->information }}</p>
                             <hr>
                             @if (auth()->check())
-                                <a href="{{ route('travel-contact', $travel->id) }}" class="btn btn-fill btn-info">Contacter le conducteur</a>
                                 @if ($travel->user == auth()->user())
                                     <a href="{{ route('travel-edit', $travel->id) }}" class="btn btn-fill btn-warning">Modifier mon annonce</a>
                                     <a href="{{ route('travel-delete', $travel->id) }}" class="btn btn-fill btn-danger">Supprimer mon annonce</a>
+                                @else
+                                    <a href="{{ route('travel-contact', $travel->id) }}" class="btn btn-fill btn-info">Contacter le conducteur</a>
                                 @endif
                             @else
                                 <p class="category">Pour contacter le conducteur, vous devez être <a href="{{ route('login') }}">connecté</a></p>
