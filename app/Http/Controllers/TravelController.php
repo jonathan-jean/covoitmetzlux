@@ -43,6 +43,7 @@ class TravelController extends Controller
         {
             $this->validate($request, [
                 'departure' => 'required',
+                'radius' => 'required|min:1|max:15',
                 'date' => 'required|date_format:d/m/Y H:i',
             ]);
 
@@ -65,17 +66,17 @@ class TravelController extends Controller
                 ->where('places', '>', 0)
                 ->orderBy('date')
                 ->get()
-                ->reject(function ($travel) use ($departure) {
-                    return $this->distance($departure->getLatitude(), $departure->getLongitude(), $travel->departure_lat, $travel->departure_long) > 3;
+                ->reject(function ($travel) use ($departure, $request) {
+                    return $this->distance($departure->getLatitude(), $departure->getLongitude(), $travel->departure_lat, $travel->departure_long) > $request->get('radius');
                 });
             if ($request->has('arrival'))
             {
-                $travels = $travels->reject(function ($travel) use ($arrival) {
-                    return $this->distance($arrival->getLatitude(), $arrival->getLongitude(), $travel->arrival_lat, $travel->arrival_long) > 3;
+                $travels = $travels->reject(function ($travel) use ($arrival, $request) {
+                    return $this->distance($arrival->getLatitude(), $arrival->getLongitude(), $travel->arrival_lat, $travel->arrival_long) > $request->get('radius');
                 });
             }
             Mapper::map($departure->getLatitude(), $departure->getLongitude(), ['zoom' => 13]);
-            Mapper::circle([['latitude' => $departure->getLatitude(), 'longitude' => $departure->getLongitude()]], ['strokeColor' => '#000000', 'strokeOpacity' => 0.1, 'strokeWeight' => 2, 'fillColor' => '#FFFFFF', 'radius' => 3000]);
+            Mapper::circle([['latitude' => $departure->getLatitude(), 'longitude' => $departure->getLongitude()]], ['strokeColor' => '#000000', 'strokeOpacity' => 0.1, 'strokeWeight' => 2, 'fillColor' => '#FFFFFF', 'radius' => $request->get('radius') * 1000]);
             foreach ($travels as $travel)
             {
                 $text = "
@@ -130,6 +131,17 @@ class TravelController extends Controller
         return view('travel.edit')->with('travel', $travel);
     }
 
+    public function getDelete(Request $request, Travel $travel)
+    {
+        if ($travel->user != auth()->user())
+        {
+            $request->session()->flash('info', 'Vous ne pouvez pas modifier une annonce qui ne vous appartient pas!');
+            return redirect(route('home'));
+        }
+        $travel->delete();
+        $request->session()->flash('info', 'Votre annonce a été supprimé');
+        return redirect(route('home'));
+    }
     public function postEdit(Request $request, Travel $travel)
     {
         $this->validate($request, [
@@ -140,6 +152,11 @@ class TravelController extends Controller
             'information' => "required"
         ]);
 
+        if ($travel->user != auth()->user())
+        {
+            $request->session()->flash('info', 'Vous ne pouvez pas modifier une annonce qui ne vous appartient pas!');
+            return redirect(route('home'));
+        }
         try {
             $departure = Mapper::location($request->get('departure'));
         } catch (Exception $e)

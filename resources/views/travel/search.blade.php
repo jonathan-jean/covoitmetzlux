@@ -34,16 +34,24 @@
                     <div class="form-group">
                         <label>Départ après le</label>
                         <div class='input-group date' id="datetimepicker" >
-                            <input type='text' class="form-control" name="date" value="{{ request('date') }}"/>
+                            <input type='text' class="form-control" name="date" value="{{ request('date') ?  request('date') : \Carbon\Carbon::now()->format('d/m/Y H:i') }}"/>
                             <span class="input-group-addon">
                                 <span class="fa fa-calendar"></span>
                             </span>
                         </div>
                     </div>
                 </div>
-                <div class='col-md-2 col-md-offset-1'>
+                <div class="col-md-2">
                     <div class="form-group">
-                        <input type="submit" name="search" class="btn btn-primary btn-bg" value="Rechercher" style="margin-top: 20px;">
+                        <label>Distance (en km)</label>
+                        <input type="text" name="radius" class="span2" data-slider-value="{{ request('radius') ? request('radius') : 3 }}" data-slider-min="1" data-slider-max="15" data-slider-step="1" data-slider-id="BC" id="B" data-slider-tooltip="hide" data-slider-handle="round" />
+                    </div>
+                </div>
+                <div class='col-md-1 text-center'>
+                    <div class="form-group">
+                        <button name="search" class="btn btn-primary btn-bg" value="search" type="submit">
+                            <span class="fa fa-search"></span>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -94,6 +102,7 @@
 @stop
 
 @section('script')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.7.2/bootstrap-slider.min.js"></script>
     <script type="text/javascript">
 
         function initialize() {
@@ -104,9 +113,13 @@
         }
 
         $(document).ready(function(){
+            $("#B").slider({
+                'tooltip': 'bottom'
+            });
             google.maps.event.addDomListener(window, 'load', initialize);
             $('#datetimepicker').datetimepicker({
-                locale: 'fr'
+                locale: 'fr',
+                sideBySide: true
             });
         });
 

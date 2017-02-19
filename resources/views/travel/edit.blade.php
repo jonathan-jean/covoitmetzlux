@@ -51,12 +51,12 @@
                             <div class="form-group">
                                 <label>Nombre de places disponibles</label>
                                 <select class="selectpicker form-control" value="{{ old('places') }}" name="places">
-                                    <option>0</option>
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
+                                    <option {{ (old("places") == 0 ? "selected":"") }}>0</option>
+                                    <option {{ (old("places") == 1 ? "selected":"") }}>1</option>
+                                    <option {{ (old("places") == 2 ? "selected":"") }}>2</option>
+                                    <option {{ (old("places") == 3 ? "selected":"") }}>3</option>
+                                    <option {{ (old("places") == 4 ? "selected":"") }}>4</option>
+                                    <option {{ (old("places") == 5 ? "selected":"") }}>5</option>
                                 </select>
                             </div>
                         </div>
@@ -92,7 +92,8 @@
         $(document).ready(function(){
             google.maps.event.addDomListener(window, 'load', initialize);
             $('#datetimepicker').datetimepicker({
-                locale: 'fr'
+                locale: 'fr',
+                sideBySide: true
             });
 
         });

@@ -2814,3 +2814,10 @@ body > .navbar-collapse {
     vertical-align: middle;
     float: none;
 }
+
+#BC .slider-selection {
+	background: #8283FF;
+}
+#BC .slider-handle {
+	border-bottom-color: blue;
+}

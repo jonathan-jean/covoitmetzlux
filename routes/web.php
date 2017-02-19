@@ -23,6 +23,8 @@ Route::group(["middleware" => ["auth"]], function () {
     Route::get('/travel', 'TravelController@getIndex')->name('travel-index');
 
 
+    Route::get('/travel/delete/{travel}', 'TravelController@getDelete')->name('travel-delete');
+
     Route::get('/travel/edit/{travel}', 'TravelController@getEdit')->name('travel-edit');
     Route::post('/travel/edit/{travel}', 'TravelController@postEdit')->name('travel-edit');
 
