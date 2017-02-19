@@ -44,7 +44,7 @@
                 <div class="col-md-2">
                     <div class="form-group">
                         <label>Distance (en km)</label>
-                        <input type="text" name="radius" class="span2" data-slider-value="{{ request('radius') ? request('radius') : 3 }}" data-slider-min="1" data-slider-max="15" data-slider-step="1" data-slider-id="BC" id="B" data-slider-tooltip="hide" data-slider-handle="round" />
+                        <input type="text" name="radius" class="span2" data-slider-value="{{ request('radius') ? request('radius') : 5 }}" data-slider-min="1" data-slider-max="15" data-slider-step="1" data-slider-id="BC" id="B" data-slider-tooltip="hide" data-slider-handle="round" />
                     </div>
                 </div>
                 <div class='col-md-1 text-center'>
