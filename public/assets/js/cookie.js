@@ -34,7 +34,7 @@ C = {
         var banner = $(
             '<div class="alert alert-danger alert-dismissible text-'+
             this.alertAlign +' fade in" ' +
-            'role="alert" style="position: fixed; bottom: 0; width: 100%; ' +
+            'role="alert" style="text-align: left; position: fixed; bottom: 0; width: 100%; ' +
             'margin-bottom: 0"><strong>' + this.bannerTitle + '</strong> ' +
             this.bannerMessage + '<a href="#" class="btn ' +
             this.buttonClass + '" onclick="C.createCookie(C.cookieName, C.cookieValue' +
