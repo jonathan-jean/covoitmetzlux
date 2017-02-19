@@ -51,7 +51,7 @@
                             <div class="form-group">
                                 <label>Nombre de places disponibles</label>
                                 <select class="selectpicker form-control" value="{{ old('places') }}" name="places">
-                                    <option {{ ($travel->places == 0 ? "selected":"")) }}>0</option>
+                                    <option {{ ($travel->places == 0 ? "selected":"") }}>0</option>
                                     <option {{ ($travel->places == 1 ? "selected":"") }}>1</option>
                                     <option {{ ($travel->places == 2 ? "selected":"") }}>2</option>
                                     <option {{ ($travel->places == 3 ? "selected":"") }}>3</option>
