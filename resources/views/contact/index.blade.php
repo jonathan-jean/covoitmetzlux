@@ -38,7 +38,7 @@
             </div>
             @else
             <div class="content">
-                <p>Vous n'avez proposé aucune demande de contact en attente.</p>
+                <p>Vous n'avez aucune demande de contact en attente.</p>
             </div>
             @endif
         </div>
