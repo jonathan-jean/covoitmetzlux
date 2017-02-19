@@ -31,7 +31,7 @@
 </head>
 <body>
 
-<div id="main" class="wrapper">
+<div class="wrapper">
     <div class="sidebar" data-color="blue" data-image="{{ asset('assets/img/sidebar.jpg') }}">
         <div class="sidebar-wrapper">
             <div class="logo">
@@ -93,7 +93,7 @@
         </div>
     </div>
 
-    <div class="main-panel">
+    <div id="main" class="main-panel">
         <nav class="navbar navbar-default navbar-fixed">
             <div class="container-fluid">
                 <div class="navbar-header">
