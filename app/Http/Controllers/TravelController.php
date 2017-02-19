@@ -89,6 +89,8 @@ class TravelController extends Controller
             return new Location($place, 49.5997333, 6.1062028);
         else if ($place == 'Luxembourg')
             return new Location("Gare de Luxembourg", 49.6000243,6.131863);
+        else if ($place == 'Kirchberg')
+            return new Location("Kirchberg", 49.6281722,6.1476312);
         else
             return Mapper::location($place);
     }
