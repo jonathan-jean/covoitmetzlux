@@ -51,6 +51,7 @@
                             <div class="form-group">
                                 <label>Nombre de places disponibles</label>
                                 <select class="selectpicker form-control" value="{{ old('places') }}" name="places">
+                                    <option>0</option>
                                     <option>1</option>
                                     <option>2</option>
                                     <option>3</option>
