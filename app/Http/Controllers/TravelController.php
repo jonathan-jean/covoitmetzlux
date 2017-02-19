@@ -118,7 +118,7 @@ class TravelController extends Controller
                 }
             }
             $date = Carbon::createFromFormat('d/m/Y H:i', $request->get('date'));
-            $travels = Travel::whereDate('date', '>=', $date)
+            $travels = Travel::where('date', '>=', $date)
                 ->where('places', '>', 0)
                 ->orderBy('date')
                 ->get()
