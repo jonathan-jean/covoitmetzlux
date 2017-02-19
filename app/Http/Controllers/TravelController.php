@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Contact;
+use App\Notifications\ContactNotification;
 use App\Travel;
 use Carbon\Carbon;
 use Cornford\Googlmapper\Facades\MapperFacade as Mapper;
@@ -173,6 +174,7 @@ class TravelController extends Controller
             $contact->to = $travel->user->id;
             $contact->answered = false;
             $travel->contactRequests()->save($contact);
+            auth()->user()->notify(new ContactNotification($contact));
             $request->session()->flash("info", "Votre demande a été transmise. Vous recevrez un mail avec les informations de contact une fois que le conducteur l'aura accepté.");
 
         }
