@@ -24,7 +24,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Date de départ</label>
+                                <label>Lieu de départ</label>
                                 <input type="text" class="form-control" id="departureBox" placeholder="Départ" name="departure" value="{{ old('departure') }}">
                             </div>
                         </div>
