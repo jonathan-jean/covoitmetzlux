@@ -24,7 +24,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Départ</label>
+                                <label>Lieu de départ</label>
                                 <input type="text" class="form-control" id="departureBox" placeholder="Départ" name="departure" value="{{ $travel->departure ? $travel->departure : ('departure') }}">
                             </div>
                         </div>
@@ -38,7 +38,7 @@
                     <div class="row">
                         <div class='col-sm-6'>
                             <div class="form-group">
-                                <label>Date et heure de départ</label>
+                                <label>Date de départ</label>
                                 <div class='input-group date' id="datetimepicker" >
                                     <input type='text' class="form-control" name="date" value="{{ $travel->date ? \Carbon\Carbon::parse($travel->date)->format('d/m/Y H:i') : ('date') }}"/>
                                     <span class="input-group-addon">

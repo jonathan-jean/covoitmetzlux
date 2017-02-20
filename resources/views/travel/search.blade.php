@@ -20,7 +20,7 @@
                 @endif
                 <div class="col-md-3">
                     <div class="form-group">
-                        <label>Départ</label>
+                        <label>Lieu de départ</label>
                         <input type="text" class="form-control" id="departureBox" placeholder="Départ" name="departure" value="{{ request('departure') }}">
                     </div>
                 </div>
@@ -32,7 +32,7 @@
                 </div>
                 <div class='col-md-3'>
                     <div class="form-group">
-                        <label>Départ après le</label>
+                        <label>Date de départ</label>
                         <div class='input-group date' id="datetimepicker" >
                             <input type='text' class="form-control" name="date" value="{{ request('date') ?  request('date') : \Carbon\Carbon::now()->format('d/m/Y H:i') }}"/>
                             <span class="input-group-addon">

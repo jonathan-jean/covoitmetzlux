@@ -1,10 +1,13 @@
 <?php
 
+use App\Travel;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    $travels = Travel::where('places', '>', 0)->orderBy('date', 'asc')->where('date', '>', Carbon::now())->limit(5)->get();
+    return view('welcome')->with('travels', $travels);
 })->name('home');
 
 
